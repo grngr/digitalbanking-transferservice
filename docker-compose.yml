@@ -1,30 +1,34 @@
 version: '3'
 services:
-  poc_bank_ft_db:
+  poc-bank-ft-db:
     image: postgres:9.6.1
-    container_name: poc_bank_ft_db_postgres_01
+    container_name: poc-bank-ft-db-postgres-01
     volumes:
       - ./config/db:/docker-entrypoint-initdb.d
 
-  poc_bank_ft_web:
+  poc-bank-ft-web:
     build: .
-    container_name: poc_bank_ft_web_django_01
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
+    container_name: poc-bank-ft-web-django-01
+    command: bash -c "cd ./poc_bank && python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
     depends_on:
-      - poc_bank_ft_db
+      - poc-bank-ft-db
     volumes:
       - ./poc_bank:/bank_demo/poc_bank
+      #- ./poc_bank/static:/bank_demo/poc_bank/static
+    ports:
+      - "8000:8000"
     expose:
       - "8000"
 
-  poc_bank_ft_static:
+  poc-bank-ft-static:
     image: nginx:1.10.3
-    container_name: poc_bank_ft_static_nginx_01
+    container_name: poc-bank-ft-static-nginx-01
     depends_on:
-      - poc_bank_ft_web
+      - poc-bank-ft-web
     volumes:
       - ./poc_bank:/bank_demo/poc_bank
-      - ./poc_bank/config/nginx:/etc/nginx/conf.d
+      - ./config/nginx:/etc/nginx/conf.d
+      #- ./poc_bank/static:/bank_demo/poc_bank/static
     ports:
       - "8080:8080"
     expose:
