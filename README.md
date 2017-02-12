@@ -106,5 +106,3 @@ Create customer(s) and customer account(s) to begin using the Transfer service.
 
 # 7. Screenshots
 Available in docs/screenshots  
-
--- tested on my MBP --
