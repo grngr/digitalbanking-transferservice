@@ -5,16 +5,24 @@ services:
     container_name: poc-bank-ft-db-postgres-01
     volumes:
       - ./config/db:/docker-entrypoint-initdb.d
+      #- db-data:/bank_demo/poc_bank/db/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
 
   poc-bank-ft-web:
     build: .
     container_name: poc-bank-ft-web-django-01
-    command: bash -c "cd ./poc_bank && python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
+    #command: bash -c "cd ./poc_bank && python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
+    command: bash -c "cd ./poc_bank && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
+    #command: bash -c "cd ./poc_bank && gunicorn -b 127.0.0.1:8000 poc_bank.wsgi:application"
+    #command: bash -c "gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
     depends_on:
       - poc-bank-ft-db
     volumes:
       - ./poc_bank:/bank_demo/poc_bank
-      #- ./poc_bank/static:/bank_demo/poc_bank/static
+      # - ./poc_bank/static:/bank_demo/poc_bank/static
     ports:
       - "8000:8000"
     expose:
@@ -27,9 +35,11 @@ services:
       - poc-bank-ft-web
     volumes:
       - ./poc_bank:/bank_demo/poc_bank
+      # - ./poc_bank/static:/bank_demo/poc_bank/static
       - ./config/nginx:/etc/nginx/conf.d
-      #- ./poc_bank/static:/bank_demo/poc_bank/static
+    # ports:
+    #   - "8080:8080"
+    # expose:
+    #   - "8080"
     ports:
-      - "8080:8080"
-    expose:
-      - "8080"
+      - "80:80"

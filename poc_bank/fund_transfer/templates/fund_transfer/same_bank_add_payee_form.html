@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Book Transfer{% endblock title %}
+{% block transfer_type %}Transfer within bank{% endblock transfer_type %}
+{% block within_bank_tab %}class="active"{% endblock within_bank_tab %}
+
+{% block content %}
+<div class="well col-md-6">
+    <form action="" method="post">
+    <!--<form action="{% url 'same_bank_fund_transfer_list' %}" method="post">-->
+        {% csrf_token %} {{ form|crispy }}
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td><label>Account number:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>City:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Nickname:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+        <!--<input type="submit" value="Submit"/>-->
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock content %}

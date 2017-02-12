@@ -1,0 +1,1 @@
+/Applications/Postgres.App/Contents/Versions/latest/bin/pg_dump --file "poc_bank.sql" --host "localhost" --port "5432" --username "postgres" --no-password --verbose --quote-all-identifiers --role "postgres" --format=p --create --clean --section=pre-data --section=data --section=post-data --inserts --column-inserts --encoding "UTF8" "poc_bank"

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Please login{% endblock title %}
+
+{% block login %}
+<div class="well col-sm-6">
+    {% if form.errors %}
+        <p class="text-warning">Login failed. Please try again.</p>
+    {% endif %}
+
+    <form role="form" class="form-horizontal" action="{% url 'some_bank_login' %}" method="post">
+        {% csrf_token %} {{ form|crispy }}
+
+        <input class="btn btn-primary" type="submit" value="Sign in" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</div>
+{% endblock login %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Electronic Fund Transfer{% endblock title %}
+{% block transfer_type %}Transfer to another bank{% endblock transfer_type %}
+{% block other_bank_tab %}class="active"{% endblock other_bank_tab %}
+
+{% block content %}
+<div class="well col-md-6">
+    <form action="" method="post">
+    <!--<form action="{% url 'other_bank_fund_transfer_list' %}" method="post">-->
+        {% csrf_token %} {{ form|crispy }}
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td><label>Payee name:</label></td>-->
+                <!--<td><input type="text"/>&nbsp;(as per payee's bank record)</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Bank code:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Bank name:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Account / Card type:</label></td>-->
+                <!--<td><select>-->
+                    <!--<option value="">&#45;&#45; select one &#45;&#45;</option>-->
+                    <!--<option value="savings">Savings</option>-->
+                    <!--<option value="current">Current</option>-->
+                <!--</select></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Account / Card number:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><label>Nickname:</label></td>-->
+                <!--<td><input type="text"/></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+        <!--<input type="submit" value="Submit"/>-->
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock content %}
