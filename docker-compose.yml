@@ -5,14 +5,16 @@ services:
     container_name: poc-bank-ft-db-postgres-01
     volumes:
       - ./config/db:/docker-entrypoint-initdb.d
+      - ./data/postgres:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
     expose:
       - "5432"
 
-  poc-bank-ft-web:
+  poc-bank-ft-app:
     build: .
-    container_name: poc-bank-ft-web-django-01
+    image: fund-transfer-service:0.1.0
+    container_name: poc-bank-ft-app-django-01
     command: bash -c "cd ./poc_bank && gunicorn -b 0.0.0.0:8000 poc_bank.wsgi:application"
     depends_on:
       - poc-bank-ft-db
@@ -23,11 +25,11 @@ services:
     expose:
       - "8000"
 
-  poc-bank-ft-static:
+  poc-bank-ft-web:
     image: nginx:1.10.3
-    container_name: poc-bank-ft-static-nginx-01
+    container_name: poc-bank-ft-web-nginx-01
     depends_on:
-      - poc-bank-ft-web
+      - poc-bank-ft-app
     volumes:
       - ./poc_bank:/bank_demo/poc_bank
       - ./config/nginx:/etc/nginx/conf.d
