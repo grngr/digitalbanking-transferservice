@@ -94,13 +94,13 @@ docker-compose down --remove-orphans
 * List dangling volumes: ```docker volume ls -f dangling=true```
 * Remove dangling volumes: ```docker volume rm $(docker volume ls -f dangling=true -q)```
 
-4.6: Docker network
+4.6: Docker network  
 ```docker network ls```
 
-4.7: Docker images
+4.7: Docker images  
 ```docker images```
 
-4.8: Docker containers
+4.8: Docker containers  
 ```docker ps -a```
 
 ## 5. Application Login, Admin and REST URLS
