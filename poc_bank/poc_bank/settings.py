@@ -89,7 +89,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "poc_bank",
         "USER": "postgres",
-        "PASSWORD": "",
+        "PASSWORD": "postgres",
         "HOST": "poc-bank-ft-db",
         "PORT": "",
     }
@@ -149,3 +149,10 @@ REST_FRAMEWORK = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+POC_BANK_CONFIG = {
+    'bank_code': '1234',
+    'bank_name': 'POC Bank',
+    'bank_city': 'Chennai',
+    'bank_branch': 'Branch X'
+}

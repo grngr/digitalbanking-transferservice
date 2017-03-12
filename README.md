@@ -34,7 +34,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "poc_bank",
         "USER": "postgres",
-        "PASSWORD": "",
+        "PASSWORD": "postgres",
         "HOST": "poc-bank-ft-db",
         "PORT": "",
     }
@@ -88,6 +88,21 @@ docker-compose logs -f poc-bank-ft-web
 docker-compose up --force-recreate --remove-orphans -d
 docker-compose down --remove-orphans
 ```
+
+4.5: Docker volumes
+* List volumes: ```docker volume ls```
+* List dangling volumes: ```docker volume ls -f dangling=true```
+* Remove dangling volumes: ```docker volume rm $(docker volume ls -f dangling=true -q)```
+
+4.6: Docker network
+```docker network ls```
+
+4.7: Docker images
+```docker images```
+
+4.8: Docker containers
+```docker ps -a```
+
 ## 5. Application Login, Admin and REST URLS
 
 5.1 Application Login URL  

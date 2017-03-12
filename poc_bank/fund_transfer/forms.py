@@ -5,15 +5,12 @@ from .models import Payee
 class SameBankAddPayeeForm(ModelForm):
     class Meta:
         #fields = '__all__'
-        # exclude = ['customer', 'name', 'account_type', 'bank_code', 'bank_name', 'bank_branch',
-        #            'created_on', 'updated_on']
-        exclude = ['bank_name', 'bank_branch', 'created_on', 'updated_on']
+        exclude = ['customer', 'bank_code', 'bank_name', 'bank_city', 'bank_branch', 'created_on', 'updated_on']
         model = Payee
 
 
 class OtherBankAddPayeeForm(ModelForm):
     class Meta:
         #fields = '__all__'
-        # exclude = ['customer', 'bank_branch', 'created_on', 'updated_on']
-        exclude = ['created_on', 'updated_on']
+        exclude = ['customer', 'created_on', 'updated_on']
         model = Payee
